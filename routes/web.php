@@ -14,24 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){
-
-        Route::get('test',function (){
-           return 'Test';
-        });
-
-        Route::get('dashboard',function (){
-           return view('dashboard.index');
-        });
-});
-
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::group(
+//    [
+//        'prefix' => LaravelLocalization::setLocale(),
+//        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+//    ], function(){
+//
+//        Route::get('test',function (){
+//           return 'Test';
+//        });
+//
+//        Route::get('dashboard',function (){
+//           return view('dashboard.index');
+//        });
+//});
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
@@ -43,4 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+//require __DIR__.'/auth.php';

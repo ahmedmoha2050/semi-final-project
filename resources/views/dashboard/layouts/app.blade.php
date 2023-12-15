@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html
-    lang="en"
+    lang="{{ app()->getLocale() }}"
     class="light-style layout-menu-fixed"
     dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}"
     data-theme="theme-default"

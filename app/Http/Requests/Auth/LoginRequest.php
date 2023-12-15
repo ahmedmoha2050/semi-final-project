@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'check' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -37,15 +37,27 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate(): void
+    public function authenticate($guard = 'web'): void
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $credentials = [
+            'password' => $this->input('password')
+        ];
+
+        if (filter_var($this->input('check'), FILTER_VALIDATE_EMAIL)) {
+            $credentials['email'] = $this->input('check');
+        } elseif (intval($this->input('check'))) {
+            $credentials['phone'] = $this->input('check');
+        } else {
+            $credentials['username'] = $this->input('check');
+        }
+
+        if (!Auth::guard($guard)->attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'check' => trans('auth.failed'),
             ]);
         }
 
@@ -59,7 +71,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -80,6 +92,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->input('email')) . '|' . $this->ip());
     }
 }

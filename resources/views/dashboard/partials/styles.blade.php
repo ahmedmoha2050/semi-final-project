@@ -18,4 +18,10 @@
 <link rel="stylesheet" href="{{asset('assets/dashboard/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/dashboard/vendor/libs/typeahead-js/typeahead.css') }}" />
 
-<link rel="stylesheet" href="{{asset('assets/dashboard/vendor/libs/apex-charts/apex-charts.css')}}" />
+<!-- Toast CSS -->
+<link rel="stylesheet" href="{{asset('assets/dashboard/vendor/libs/toastr/toastr.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/dashboard/vendor/libs/animate-css/animate.css')}}" />
+
+
+{{--<link rel="stylesheet" href="{{asset('assets/dashboard/vendor/libs/apex-charts/apex-charts.css')}}" />--}}
+

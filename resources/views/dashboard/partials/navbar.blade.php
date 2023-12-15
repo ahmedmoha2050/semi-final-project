@@ -319,7 +319,7 @@
                             <span class="align-middle">{{ __('dashboard/navbar.logout') }}</span>
                         </button>
 
-                        <form action="{{ route('logout') }}" style="display: none;" id="logout" method="post">
+                        <form action="{{ route('dashboard.logout') }}" style="display: none;" id="logout" method="post">
                             @csrf
                         </form>
                     </li>
