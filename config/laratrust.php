@@ -100,6 +100,7 @@ return [
     */
     'user_models' => [
         'users' => \App\Models\User::class,
+        'admins' => \App\Models\Admin::class,
     ],
 
     /*
