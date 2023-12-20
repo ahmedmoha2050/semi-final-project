@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\AdminEmailVerificationNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\AdminResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +12,7 @@ use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
 use Laravel\Sanctum\HasApiTokens;
 
-class Admin extends Authenticatable implements LaratrustUser
+class Admin extends Authenticatable implements LaratrustUser , MustVerifyEmail
 {
     use HasRolesAndPermissions, HasApiTokens, HasFactory, Notifiable;
 
@@ -47,4 +49,22 @@ class Admin extends Authenticatable implements LaratrustUser
         'phone_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    /**
+     * Send a password reset notification to the user.
+     *
+     * @param string $token
+     */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new AdminResetPasswordNotification($token));
+    }
+
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify(new AdminEmailVerificationNotification());
+    }
+
+
 }

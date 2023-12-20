@@ -1,0 +1,5 @@
+PAssword
+
+{{ $url }}
+
+{!! $url !!}

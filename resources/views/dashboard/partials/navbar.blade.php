@@ -16,7 +16,7 @@
                 <input
                     type="text"
                     class="form-control border-0 shadow-none"
-                    placeholder="{{ __('dashboard/navbar.search') }}..."
+                    placeholder="{{ __('dashboard/layouts/navbar.search') }}..."
                     aria-label="Search..."
                 />
             </div>
@@ -278,7 +278,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">John Doe</span>
+                                    <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
                                     <small class="text-muted">Admin</small>
                                 </div>
                             </div>
@@ -290,13 +290,13 @@
                     <li>
                         <a class="dropdown-item" href="#">
                             <i class="bx bx-user me-2"></i>
-                            <span class="align-middle">{{ __('dashboard/navbar.profile') }}</span>
+                            <span class="align-middle">{{ __('dashboard/layouts/navbar.profile') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('dashboard.profile.edit') }}">
                             <i class="bx bx-cog me-2"></i>
-                            <span class="align-middle">{{ __('dashboard/navbar.setting') }}</span>
+                            <span class="align-middle">{{ __('dashboard/layouts/navbar.setting') }}</span>
                         </a>
                     </li>
                     <li>
@@ -316,7 +316,7 @@
                                 form="logout"
                         >
                             <i class="bx bx-power-off me-2"></i>
-                            <span class="align-middle">{{ __('dashboard/navbar.logout') }}</span>
+                            <span class="align-middle">{{ __('dashboard/layouts/navbar.logout') }}</span>
                         </button>
 
                         <form action="{{ route('dashboard.logout') }}" style="display: none;" id="logout" method="post">

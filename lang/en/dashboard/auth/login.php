@@ -2,6 +2,8 @@
 
 return [
 
+    'title' => 'Login',
+
     'message' => 'Please sign-in to your account and start the adventure',
 
     'email_username_password' => 'EMAIL OR USERNAME OR PHONE',
@@ -12,4 +14,7 @@ return [
     'login' => 'Login',
     'guest' => 'New on our platform?',
     'new_acc' => 'Create an account',
+    'or' => 'or',
+
+    'login_success' => 'Logged In Successfully!'
 ];

@@ -29,7 +29,7 @@ class AdminAuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::DASHBOARD)->with('msg', __('dashboard/login.login_success'));
+        return redirect()->intended(RouteServiceProvider::DASHBOARD)->with('msg', __('dashboard/auth/login.login_success'));
     }
 
     /**
